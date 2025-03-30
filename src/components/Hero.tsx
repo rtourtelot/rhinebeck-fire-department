@@ -14,8 +14,11 @@ const Hero = () => {
         priority
       />
       
+      {/* Gradient Overlay for better text readability */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black/60 via-black/40 to-black/60"></div>
+      
       {/* Content */}
-      <div className="relative z-10 container mx-auto h-full flex flex-col justify-center text-white">
+      <div className="relative z-10 container mx-auto h-full flex flex-col justify-center items-center text-white text-center px-4">
         <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">
           Rhinebeck Fire Department
         </h1>
@@ -26,7 +29,7 @@ const Hero = () => {
           We are a volunteer department committed to providing professional fire protection, 
           rescue services, and public education to the Rhinebeck community.
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4 justify-center">
           <Link href="/join" className="btn btn-primary">
             Join Our Team
           </Link>

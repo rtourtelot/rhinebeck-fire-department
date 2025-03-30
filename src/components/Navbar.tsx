@@ -12,11 +12,11 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
-      <div className="container mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Logo and site name */}
-        <div className="flex justify-center py-4 border-b border-gray-100">
+        <div className="flex justify-center py-4">
           <Link href="/" className="flex items-center">
-            <div className="w-16 h-16 relative mr-4">
+            <div className="w-14 h-14 relative mr-3">
               <WebflowImage 
                 src="/images/rbfd-logo.png" 
                 alt="Rhinebeck Fire Department Logo"
@@ -24,21 +24,23 @@ const Navbar = () => {
               />
             </div>
             <div className="text-navy-blue">
-              <h1 className="text-2xl font-bold tracking-wider">RHINEBECK FIRE DEPARTMENT</h1>
+              <h1 className="text-[28px] font-bold tracking-normal">RHINEBECK FIRE DEPARTMENT</h1>
             </div>
           </Link>
         </div>
         
-        {/* Desktop navigation */}
-        <div className="hidden md:flex justify-center py-3">
-          <div className="flex space-x-10">
-            <NavItem href="/" text="HOME" />
-            <NavItem href="/about" text="ABOUT US" />
-            <NavItem href="/about" text="OFFICERS" />
-            <NavItem href="/gallery" text="APPARATUS" />
-            <NavItem href="/join" text="VOLUNTEER" />
-            <NavItem href="/safety" text="FIRE SAFETY" />
-            <NavItem href="/contact" text="CONTACT" />
+        {/* Desktop navigation - perfectly centered with proper spacing */}
+        <div className="hidden md:block border-t border-gray-200">
+          <div className="flex justify-center">
+            <div className="flex">
+              <NavItem href="/" text="HOME" />
+              <NavItem href="/about" text="ABOUT US" />
+              <NavItem href="/about" text="OFFICERS" />
+              <NavItem href="/gallery" text="APPARATUS" />
+              <NavItem href="/join" text="VOLUNTEER" />
+              <NavItem href="/safety" text="FIRE SAFETY" />
+              <NavItem href="/contact" text="CONTACT" />
+            </div>
           </div>
         </div>
         
@@ -85,7 +87,7 @@ const NavItem = ({ href, text, onClick }: NavItemProps) => {
   return (
     <Link 
       href={href} 
-      className="text-navy-blue hover:text-fire-red font-medium transition duration-300"
+      className="text-navy-blue hover:text-fire-red px-5 py-3 block font-semibold text-[15px]"
       onClick={onClick}
     >
       {text}

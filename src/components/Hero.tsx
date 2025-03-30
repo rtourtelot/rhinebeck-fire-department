@@ -1,21 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
-import WebflowImage from './WebflowImage';
 
 const Hero = () => {
   return (
     <div className="relative h-[80vh] min-h-[600px]">
-      {/* Background Image */}
-      <WebflowImage
-        src="/images/hero-image.jpg"
-        alt="Rhinebeck Fire Department"
-        className="absolute inset-0 z-0"
-        isBackground
-        priority
-      />
+      {/* Background Image - using standard img tag instead of WebflowImage to avoid issues */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/RBFD-hero.png"
+          alt="Rhinebeck Fire Department"
+          className="object-cover w-full h-full"
+        />
+      </div>
       
-      {/* Dark Gradient Overlay - from top to bottom, matching original site */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/75 to-transparent"></div>
+      {/* Dark Gradient Overlay - matches original site */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/70 to-transparent"></div>
       
       {/* Content */}
       <div className="relative z-10 container mx-auto h-full flex flex-col justify-center px-4">

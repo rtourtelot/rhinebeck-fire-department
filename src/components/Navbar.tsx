@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import WebflowImage from './WebflowImage';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,51 +11,53 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto">
+    <nav className="bg-white sticky top-0 z-50">
+      <div className="max-w-6xl mx-auto px-4">
         {/* Logo and site name */}
-        <div className="flex justify-center py-4">
+        <div className="flex justify-start py-4">
           <Link href="/" className="flex items-center">
-            <div className="w-14 h-14 relative mr-3">
-              <WebflowImage 
-                src="/images/rbfd-logo.png" 
-                alt="Rhinebeck Fire Department Logo"
-                className="object-contain w-full h-full"
-              />
-            </div>
+            <Image 
+              src="/images/main-logo.svg" 
+              alt="Rhinebeck Fire Department Logo"
+              width={54}
+              height={42}
+              className="mr-3"
+            />
             <div className="text-navy-blue">
               <h1 className="text-[28px] font-bold tracking-normal">RHINEBECK FIRE DEPARTMENT</h1>
             </div>
           </Link>
         </div>
+      </div>
         
-        {/* Desktop navigation - perfectly centered with proper spacing */}
-        <div className="hidden md:block border-t border-gray-200">
-          <div className="flex justify-center">
+      {/* Desktop navigation - border line below */}
+      <div className="border-t border-b border-gray-200">
+        <div className="max-w-6xl mx-auto">
+          <div className="hidden md:flex justify-between items-center">
             <div className="flex">
               <NavItem href="/" text="HOME" />
               <NavItem href="/about" text="ABOUT US" />
               <NavItem href="/about" text="OFFICERS" />
               <NavItem href="/gallery" text="APPARATUS" />
-              <NavItem href="/join" text="VOLUNTEER" />
+              <NavItem href="/join" text="VOLUNTEER" active />
               <NavItem href="/safety" text="FIRE SAFETY" />
               <NavItem href="/contact" text="CONTACT" />
             </div>
           </div>
-        </div>
-        
-        {/* Mobile menu button */}
-        <div className="md:hidden flex justify-between items-center py-4 px-4">
-          <Link href="/" className="text-xl font-bold text-navy-blue">
-            RBFD
-          </Link>
-          <button 
-            className="text-navy-blue text-2xl"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <FaTimes /> : <FaBars />}
-          </button>
+          
+          {/* Mobile menu button */}
+          <div className="md:hidden flex justify-between items-center py-4">
+            <Link href="/" className="text-xl font-bold text-navy-blue">
+              RBFD
+            </Link>
+            <button 
+              className="text-navy-blue text-2xl"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
         </div>
       </div>
       
@@ -67,7 +69,7 @@ const Navbar = () => {
             <NavItem href="/about" text="ABOUT US" onClick={toggleMenu} />
             <NavItem href="/about" text="OFFICERS" onClick={toggleMenu} />
             <NavItem href="/gallery" text="APPARATUS" onClick={toggleMenu} />
-            <NavItem href="/join" text="VOLUNTEER" onClick={toggleMenu} />
+            <NavItem href="/join" text="VOLUNTEER" onClick={toggleMenu} active />
             <NavItem href="/safety" text="FIRE SAFETY" onClick={toggleMenu} />
             <NavItem href="/contact" text="CONTACT" onClick={toggleMenu} />
           </div>
@@ -81,13 +83,17 @@ interface NavItemProps {
   href: string;
   text: string;
   onClick?: () => void;
+  active?: boolean;
 }
 
-const NavItem = ({ href, text, onClick }: NavItemProps) => {
+const NavItem = ({ href, text, onClick, active }: NavItemProps) => {
   return (
     <Link 
       href={href} 
-      className="text-navy-blue hover:text-fire-red px-5 py-3 block font-semibold text-[15px]"
+      className={`
+        px-5 py-3 block font-medium text-[15px] 
+        ${active ? 'bg-fire-red text-white' : 'text-navy-blue hover:text-fire-red'}
+      `}
       onClick={onClick}
     >
       {text}

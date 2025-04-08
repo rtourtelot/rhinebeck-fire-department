@@ -3,7 +3,14 @@ import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
 import FeatureSection from '@/components/FeatureSection';
 import Head from 'next/head';
-import { FaCalendarAlt, FaBullhorn } from 'react-icons/fa';
+import { ArrowRight } from 'phosphor-react';
+import { 
+  Megaphone, 
+  CalendarBlank, 
+  Clock, 
+  MapPin
+} from 'phosphor-react';
+import Link from 'next/link';
 
 const HomePage = () => {
   // Sample latest news items
@@ -71,60 +78,67 @@ const HomePage = () => {
         <FeatureSection />
         
         {/* News & Events Section */}
-        <section className="py-16 container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <section className="py-20 container mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Latest News */}
-            <div>
+            <div className="bg-white rounded-lg shadow-xl p-8 border border-gray-100">
               <div className="flex items-center mb-8">
-                <FaBullhorn className="text-fire-red text-3xl mr-4" />
-                <h2 className="text-3xl font-bold">Latest News</h2>
+                <div className="bg-fire-red/10 p-4 rounded-full mr-4">
+                  <Megaphone size={32} weight="duotone" className="text-fire-red" />
+                </div>
+                <h2 className="text-3xl font-bold text-navy-blue">Latest News</h2>
               </div>
               
               <div className="space-y-8">
                 {latestNews.map(item => (
-                  <div key={item.id} className="border-b border-gray-200 pb-6">
-                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-gray-500 mb-3">{item.date}</p>
-                    <p className="mb-3">{item.excerpt}</p>
-                    <a 
+                  <div key={item.id} className="border-b border-gray-200 pb-6 group">
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-fire-red transition-colors duration-300">{item.title}</h3>
+                    <p className="text-gray-500 mb-3 text-sm">{item.date}</p>
+                    <p className="mb-4 text-gray-700">{item.excerpt}</p>
+                    <Link 
                       href={item.link} 
-                      className="text-fire-red font-medium hover:text-red-700 flex items-center"
+                      className="text-fire-red font-medium hover:text-red-700 flex items-center transition-all duration-300 group-hover:translate-x-1"
                     >
-                      Read More <span className="ml-1">→</span>
-                    </a>
+                      Read More <ArrowRight size={18} weight="bold" className="ml-2" />
+                    </Link>
                   </div>
                 ))}
               </div>
             </div>
             
             {/* Upcoming Events */}
-            <div>
+            <div className="bg-white rounded-lg shadow-xl p-8 border border-gray-100">
               <div className="flex items-center mb-8">
-                <FaCalendarAlt className="text-fire-red text-3xl mr-4" />
-                <h2 className="text-3xl font-bold">Upcoming Events</h2>
+                <div className="bg-fire-red/10 p-4 rounded-full mr-4">
+                  <CalendarBlank size={32} weight="duotone" className="text-fire-red" />
+                </div>
+                <h2 className="text-3xl font-bold text-navy-blue">Upcoming Events</h2>
               </div>
               
               <div className="space-y-6">
                 {upcomingEvents.map(event => (
-                  <div key={event.id} className="bg-light-gray p-6 rounded-lg">
-                    <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-                    <div className="space-y-2 mb-3">
-                      <p className="flex items-center">
-                        <span className="font-medium mr-2">Date:</span> {event.date}
+                  <div key={event.id} className="bg-navy-blue/5 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+                    <h3 className="text-xl font-bold mb-3 text-navy-blue">{event.title}</h3>
+                    <div className="space-y-2 mb-4">
+                      <p className="flex items-center text-gray-700">
+                        <CalendarBlank size={20} weight="fill" className="text-navy-blue mr-2" />
+                        <span className="font-medium mr-2 text-navy-blue">Date:</span> {event.date}
                       </p>
-                      <p className="flex items-center">
-                        <span className="font-medium mr-2">Time:</span> {event.time}
+                      <p className="flex items-center text-gray-700">
+                        <Clock size={20} weight="fill" className="text-navy-blue mr-2" />
+                        <span className="font-medium mr-2 text-navy-blue">Time:</span> {event.time}
                       </p>
-                      <p className="flex items-center">
-                        <span className="font-medium mr-2">Location:</span> {event.location}
+                      <p className="flex items-center text-gray-700">
+                        <MapPin size={20} weight="fill" className="text-navy-blue mr-2" />
+                        <span className="font-medium mr-2 text-navy-blue">Location:</span> {event.location}
                       </p>
                     </div>
-                    <a 
+                    <Link 
                       href={event.link} 
-                      className="text-fire-red font-medium hover:text-red-700 flex items-center"
+                      className="text-fire-red font-medium hover:text-red-700 flex items-center transition-all duration-300 group hover:translate-x-1"
                     >
-                      Event Details <span className="ml-1">→</span>
-                    </a>
+                      Event Details <ArrowRight size={18} weight="bold" className="ml-2" />
+                    </Link>
                   </div>
                 ))}
               </div>
@@ -133,15 +147,25 @@ const HomePage = () => {
         </section>
         
         {/* Call-to-Action Section */}
-        <section className="bg-navy-blue text-white py-16">
-          <div className="container mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Make a Difference?</h2>
-            <p className="text-xl max-w-3xl mx-auto mb-8">
+        <section className="bg-gradient-to-r from-navy-blue to-[#001F40] text-white py-20">
+          <div className="container mx-auto text-center px-4 md:px-8">
+            <h2 className="text-4xl font-bold mb-6">Ready to Make a Difference?</h2>
+            <p className="text-xl max-w-3xl mx-auto mb-10 text-white/90">
               Join the Rhinebeck Fire Department and become part of a team dedicated to protecting our community.
             </p>
-            <div className="flex justify-center space-x-4">
-              <a href="/join" className="btn btn-primary">Apply Today</a>
-              <a href="/about" className="btn bg-white text-navy-blue hover:bg-gray-100">Learn More</a>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link 
+                href="/join" 
+                className="bg-fire-red hover:bg-red-700 text-white font-bold py-4 px-8 rounded-md shadow-lg transition-all duration-300 hover:-translate-y-1"
+              >
+                Apply Today
+              </Link>
+              <Link 
+                href="/about" 
+                className="bg-white/10 hover:bg-white/20 text-white font-bold py-4 px-8 rounded-md shadow-lg transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm border border-white/20"
+              >
+                Learn More
+              </Link>
             </div>
           </div>
         </section>
